@@ -1,0 +1,101 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'CLK_i'
+Slack : -22.529
+TNS   : -2147.761
+
+Type  : Slow 1100mV 85C Model Hold 'CLK_i'
+Slack : 0.409
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Recovery 'CLK_i'
+Slack : -4.641
+TNS   : -900.682
+
+Type  : Slow 1100mV 85C Model Removal 'CLK_i'
+Slack : 1.972
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'CLK_i'
+Slack : -0.538
+TNS   : -295.827
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'RST_N_i'
+Slack : 0.092
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Setup 'CLK_i'
+Slack : -23.555
+TNS   : -2109.400
+
+Type  : Slow 1100mV 0C Model Hold 'CLK_i'
+Slack : 0.383
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Recovery 'CLK_i'
+Slack : -4.426
+TNS   : -858.715
+
+Type  : Slow 1100mV 0C Model Removal 'CLK_i'
+Slack : 1.885
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'CLK_i'
+Slack : -0.538
+TNS   : -304.495
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'RST_N_i'
+Slack : 0.102
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Setup 'CLK_i'
+Slack : -9.452
+TNS   : -915.691
+
+Type  : Fast 1100mV 85C Model Hold 'CLK_i'
+Slack : 0.179
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Recovery 'CLK_i'
+Slack : -2.323
+TNS   : -451.123
+
+Type  : Fast 1100mV 85C Model Removal 'CLK_i'
+Slack : 0.950
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'RST_N_i'
+Slack : -0.157
+TNS   : -0.780
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'CLK_i'
+Slack : -0.099
+TNS   : -33.559
+
+Type  : Fast 1100mV 0C Model Setup 'CLK_i'
+Slack : -8.884
+TNS   : -791.443
+
+Type  : Fast 1100mV 0C Model Hold 'CLK_i'
+Slack : 0.170
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Recovery 'CLK_i'
+Slack : -2.232
+TNS   : -433.691
+
+Type  : Fast 1100mV 0C Model Removal 'CLK_i'
+Slack : 0.882
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'RST_N_i'
+Slack : -0.118
+TNS   : -0.568
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'CLK_i'
+Slack : -0.099
+TNS   : -34.685
+
+------------------------------------------------------------

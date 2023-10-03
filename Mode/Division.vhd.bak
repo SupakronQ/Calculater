@@ -1,0 +1,126 @@
+library ieee;
+use ieee.std_logic_1164.all;
+use ieee.numeric_std.all;
+use ieee.STD_LOGIC_UNSIGNED.ALL;
+
+entity Division is 
+	generic ( N : integer := 5 );
+	port( CLK,RST_N,START : in std_logic;
+			A, B : in std_logic_vector( N-1 downto 0 ) := ( others => '0');
+			Q : out std_logic_vector( 2*N-1 downto 0 ) := ( others => '0');
+			R : out std_logic_vector( 2*N downto 0 ) := ( others => '0');
+			over : out std_logic := '0';
+			DONE : out std_logic := '0');
+			
+end Division;
+
+architecture Behave of Division is
+
+	type state_type is (S0,S1,S2);
+	signal state 		 : state_type := s0;
+	signal Divisor 	 : std_logic_vector(2*N downto 0) := (others => '0');
+	signal Remainder 	 : std_logic_vector(2*N downto 0) := (others => '0');
+	signal Quotient 	 : std_logic_vector(2*N-1 downto 0) := (others => '0');
+	signal Round 		 : std_logic_vector(N-1 downto 0) := (others => '0');
+	signal zero 		 : std_logic_vector(N-1 downto 0) := (others => '0');
+	signal S_start 	 : std_logic := '0' ;
+	signal negative	 : std_logic_vector(2*N downto 0) := (others => '0');
+	
+	begin 
+	
+	S_start <= START ;
+	
+	process ( RST_N, CLK , START)
+	
+	begin 
+	
+		if RST_N = '0' then 
+			
+			state 		<= S0;
+			Quotient 	<= (others => '0');
+			Remainder 	<= (others => '0');
+			negative 	<= (others => '0');
+			Divisor 		<= (others => '0');
+			Round  		<= (others => '0');
+			Q 				<= (others => '0');
+			R 				<= (others => '0');
+			
+		elsif rising_edge(CLK) then 
+		
+			case state is
+			
+				when S0 =>
+				
+					if S_Start = '1' then
+					
+						Divisor  (2*N-1 downto N) 	 <= B;
+						Remainder(N-1 downto 0) 	 <= A;
+						Round  							 <= B;
+						state <= S1;
+						
+					else 
+					
+						state <= S0;
+						DONE <= '0';
+						
+					end if;
+					
+				when S1 => 
+						
+					if Quotient < Divisor and Divisor >= Round then
+						
+						negative <= Remainder - Divisor;
+						state <= S2;
+						
+					else 
+						
+						Done 		 <= '1';
+						state 	 <= S0;
+						R <= Remainder;
+						Q <= Quotient;
+						over <= '0';
+						
+						if Round = zero then 
+					
+						over 		 <= '1';				
+							
+						end if;
+						
+						
+						Round		 <= (others => '0');
+						Quotient  <= (others => '0');
+						Remainder <= (others => '0');
+						negative  <= (others => '0');
+						Divisor 	 <= (others => '0');
+						
+					end if;
+						
+				when S2 =>
+				
+						Divisor <= std_logic_vector(shift_right(unsigned(Divisor),1));
+						
+						if negative(2*N) = '1'  then
+						
+							Quotient <= std_logic_vector(shift_left(unsigned(Quotient),1)) ;
+							Quotient(0) <= '0';
+
+						else
+							
+							Remainder <= negative;
+							Quotient <= std_logic_vector(shift_left(unsigned(Quotient),1));
+							Quotient(0) <=  '1';
+								
+						end if;
+						
+						
+						state <= S1;
+						R <= Remainder;
+						Q <= Quotient;
+				
+			end case;
+			
+		end if;
+		
+	end process;
+	
+end Behave;
